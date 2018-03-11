@@ -1,4 +1,4 @@
-package com.challenger.ramyfradwan.twitterchallenge;
+package com.challenger.ramyfradwan.twitterchallenge.UI;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.challenger.ramyfradwan.twitterchallenge.R;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Commit the edits!
                 editor.commit();
 
+
             }
 
             @Override
@@ -64,12 +66,13 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Pass the activity result to the login button.
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        Intent intent = new Intent(getBaseContext(),MainActivity.class);
+        Intent intent = new Intent(getBaseContext(),FollowersActivity.class);
         startActivity(intent);
-        // Pass the activity result to the login button.
         loginButton.onActivityResult(requestCode, resultCode, data);
+
     }
 }

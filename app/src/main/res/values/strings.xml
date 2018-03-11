@@ -15,4 +15,7 @@
     </string>
     <string name="title_activity_main">MainActivity</string>
     <string name="user_name">User Name</string>
+    <string name="bio">Bio</string>
+    <string name="title_activity_followers">FollowersActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>

@@ -1,450 +1,539 @@
 
 package com.challenger.ramyfradwan.twitterchallenge.Model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-    @SerializedName("id")
-    @Expose
-    private int id;
-    @SerializedName("id_str")
-    @Expose
-    private String idStr;
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("screen_name")
-    @Expose
-    private String screenName;
-    @SerializedName("location")
-    @Expose
-    private String location;
-    @SerializedName("profile_location")
-    @Expose
-    private Object profileLocation;
-    @SerializedName("url")
-    @Expose
-    private Object url;
-    @SerializedName("description")
-    @Expose
-    private String description;
-    @SerializedName("protected")
-    @Expose
-    private boolean _protected;
-    @SerializedName("followers_count")
-    @Expose
-    private int followersCount;
-    @SerializedName("friends_count")
-    @Expose
-    private int friendsCount;
-    @SerializedName("listed_count")
-    @Expose
-    private int listedCount;
-    @SerializedName("created_at")
-    @Expose
-    private String createdAt;
-    @SerializedName("favourites_count")
-    @Expose
-    private int favouritesCount;
-    @SerializedName("utc_offset")
-    @Expose
-    private Object utcOffset;
-    @SerializedName("time_zone")
-    @Expose
-    private Object timeZone;
-    @SerializedName("geo_enabled")
-    @Expose
-    private boolean geoEnabled;
-    @SerializedName("verified")
-    @Expose
-    private boolean verified;
-    @SerializedName("statuses_count")
-    @Expose
-    private int statusesCount;
-    @SerializedName("lang")
-    @Expose
-    private String lang;
     @SerializedName("contributors_enabled")
-    @Expose
-    private boolean contributorsEnabled;
-    @SerializedName("is_translator")
-    @Expose
-    private boolean isTranslator;
-    @SerializedName("is_translation_enabled")
-    @Expose
-    private boolean isTranslationEnabled;
-    @SerializedName("profile_background_color")
-    @Expose
-    private String profileBackgroundColor;
-    @SerializedName("profile_background_image_url")
-    @Expose
-    private String profileBackgroundImageUrl;
-    @SerializedName("profile_background_image_url_https")
-    @Expose
-    private String profileBackgroundImageUrlHttps;
-    @SerializedName("profile_background_tile")
-    @Expose
-    private boolean profileBackgroundTile;
-    @SerializedName("profile_image_url")
-    @Expose
-    private String profileImageUrl;
-    @SerializedName("profile_image_url_https")
-    @Expose
-    private String profileImageUrlHttps;
-    @SerializedName("profile_link_color")
-    @Expose
-    private String profileLinkColor;
-    @SerializedName("profile_sidebar_border_color")
-    @Expose
-    private String profileSidebarBorderColor;
-    @SerializedName("profile_sidebar_fill_color")
-    @Expose
-    private String profileSidebarFillColor;
-    @SerializedName("profile_text_color")
-    @Expose
-    private String profileTextColor;
-    @SerializedName("profile_use_background_image")
-    @Expose
-    private boolean profileUseBackgroundImage;
+    private Boolean mContributorsEnabled;
+    @SerializedName("created_at")
+    private String mCreatedAt;
     @SerializedName("default_profile")
-    @Expose
-    private boolean defaultProfile;
+    private Boolean mDefaultProfile;
     @SerializedName("default_profile_image")
-    @Expose
-    private boolean defaultProfileImage;
-    @SerializedName("following")
-    @Expose
-    private boolean following;
+    private Boolean mDefaultProfileImage;
+    @SerializedName("description")
+    private String mDescription;
+    @SerializedName("favourites_count")
+    private Long mFavouritesCount;
     @SerializedName("follow_request_sent")
-    @Expose
-    private boolean followRequestSent;
-    @SerializedName("notifications")
-    @Expose
-    private boolean notifications;
+    private Boolean mFollowRequestSent;
+    @SerializedName("followers_count")
+    private Long mFollowersCount;
+    @SerializedName("following")
+    private Boolean mFollowing;
+    @SerializedName("friends_count")
+    private Long mFriendsCount;
+    @SerializedName("geo_enabled")
+    private Boolean mGeoEnabled;
+    @SerializedName("id")
+    private Long mId;
+    @SerializedName("id_str")
+    private String mIdStr;
+    @SerializedName("is_translation_enabled")
+    private Boolean mIsTranslationEnabled;
+    @SerializedName("is_translator")
+    private Boolean mIsTranslator;
+    @SerializedName("lang")
+    private String mLang;
+    @SerializedName("listed_count")
+    private Long mListedCount;
+    @SerializedName("location")
+    private String mLocation;
     @SerializedName("muting")
-    @Expose
-    private boolean muting;
+    private Boolean mMuting;
+    @SerializedName("name")
+    private String mName;
+    @SerializedName("notifications")
+    private Boolean mNotifications;
+    @SerializedName("profile_background_color")
+    private String mProfileBackgroundColor;
+    @SerializedName("profile_background_image_url")
+    private String mProfileBackgroundImageUrl;
+    @SerializedName("profile_background_image_url_https")
+    private String mProfileBackgroundImageUrlHttps;
+    @SerializedName("profile_background_tile")
+    private Boolean mProfileBackgroundTile;
+    @SerializedName("profile_image_url")
+    private String mProfileImageUrl;
+    @SerializedName("profile_image_url_https")
+    private String mProfileImageUrlHttps;
+    @SerializedName("profile_link_color")
+    private String mProfileLinkColor;
+    @SerializedName("profile_location")
+    private Object mProfileLocation;
+    @SerializedName("profile_sidebar_border_color")
+    private String mProfileSidebarBorderColor;
+    @SerializedName("profile_sidebar_fill_color")
+    private String mProfileSidebarFillColor;
+    @SerializedName("profile_text_color")
+    private String mProfileTextColor;
+    @SerializedName("profile_use_background_image")
+    private Boolean mProfileUseBackgroundImage;
+    @SerializedName("protected")
+    private Boolean mProtected;
+    @SerializedName("screen_name")
+    private String mScreenName;
+    @SerializedName("statuses_count")
+    private Long mStatusesCount;
+    @SerializedName("time_zone")
+    private Object mTimeZone;
+    @SerializedName("url")
+    private Object mUrl;
+    @SerializedName("utc_offset")
+    private Object mUtcOffset;
+    @SerializedName("verified")
+    private Boolean mVerified;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getIdStr() {
-        return idStr;
-    }
-
-    public void setIdStr(String idStr) {
-        this.idStr = idStr;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getScreenName() {
-        return screenName;
-    }
-
-    public void setScreenName(String screenName) {
-        this.screenName = screenName;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public Object getProfileLocation() {
-        return profileLocation;
-    }
-
-    public void setProfileLocation(Object profileLocation) {
-        this.profileLocation = profileLocation;
-    }
-
-    public Object getUrl() {
-        return url;
-    }
-
-    public void setUrl(Object url) {
-        this.url = url;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isProtected() {
-        return _protected;
-    }
-
-    public void setProtected(boolean _protected) {
-        this._protected = _protected;
-    }
-
-    public int getFollowersCount() {
-        return followersCount;
-    }
-
-    public void setFollowersCount(int followersCount) {
-        this.followersCount = followersCount;
-    }
-
-    public int getFriendsCount() {
-        return friendsCount;
-    }
-
-    public void setFriendsCount(int friendsCount) {
-        this.friendsCount = friendsCount;
-    }
-
-    public int getListedCount() {
-        return listedCount;
-    }
-
-    public void setListedCount(int listedCount) {
-        this.listedCount = listedCount;
+    public Boolean getContributorsEnabled() {
+        return mContributorsEnabled;
     }
 
     public String getCreatedAt() {
-        return createdAt;
+        return mCreatedAt;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public Boolean getDefaultProfile() {
+        return mDefaultProfile;
     }
 
-    public int getFavouritesCount() {
-        return favouritesCount;
+    public Boolean getDefaultProfileImage() {
+        return mDefaultProfileImage;
     }
 
-    public void setFavouritesCount(int favouritesCount) {
-        this.favouritesCount = favouritesCount;
+    public String getDescription() {
+        return mDescription;
     }
 
-    public Object getUtcOffset() {
-        return utcOffset;
+    public Long getFavouritesCount() {
+        return mFavouritesCount;
     }
 
-    public void setUtcOffset(Object utcOffset) {
-        this.utcOffset = utcOffset;
+    public Boolean getFollowRequestSent() {
+        return mFollowRequestSent;
     }
 
-    public Object getTimeZone() {
-        return timeZone;
+    public Long getFollowersCount() {
+        return mFollowersCount;
     }
 
-    public void setTimeZone(Object timeZone) {
-        this.timeZone = timeZone;
+    public Boolean getFollowing() {
+        return mFollowing;
     }
 
-    public boolean isGeoEnabled() {
-        return geoEnabled;
+    public Long getFriendsCount() {
+        return mFriendsCount;
     }
 
-    public void setGeoEnabled(boolean geoEnabled) {
-        this.geoEnabled = geoEnabled;
+    public Boolean getGeoEnabled() {
+        return mGeoEnabled;
     }
 
-    public boolean isVerified() {
-        return verified;
+    public Long getId() {
+        return mId;
     }
 
-    public void setVerified(boolean verified) {
-        this.verified = verified;
+    public String getIdStr() {
+        return mIdStr;
     }
 
-    public int getStatusesCount() {
-        return statusesCount;
+    public Boolean getIsTranslationEnabled() {
+        return mIsTranslationEnabled;
     }
 
-    public void setStatusesCount(int statusesCount) {
-        this.statusesCount = statusesCount;
+    public Boolean getIsTranslator() {
+        return mIsTranslator;
     }
 
     public String getLang() {
-        return lang;
+        return mLang;
     }
 
-    public void setLang(String lang) {
-        this.lang = lang;
+    public Long getListedCount() {
+        return mListedCount;
     }
 
-    public boolean isContributorsEnabled() {
-        return contributorsEnabled;
+    public String getLocation() {
+        return mLocation;
     }
 
-    public void setContributorsEnabled(boolean contributorsEnabled) {
-        this.contributorsEnabled = contributorsEnabled;
+    public Boolean getMuting() {
+        return mMuting;
     }
 
-    public boolean isIsTranslator() {
-        return isTranslator;
+    public String getName() {
+        return mName;
     }
 
-    public void setIsTranslator(boolean isTranslator) {
-        this.isTranslator = isTranslator;
-    }
-
-    public boolean isIsTranslationEnabled() {
-        return isTranslationEnabled;
-    }
-
-    public void setIsTranslationEnabled(boolean isTranslationEnabled) {
-        this.isTranslationEnabled = isTranslationEnabled;
+    public Boolean getNotifications() {
+        return mNotifications;
     }
 
     public String getProfileBackgroundColor() {
-        return profileBackgroundColor;
-    }
-
-    public void setProfileBackgroundColor(String profileBackgroundColor) {
-        this.profileBackgroundColor = profileBackgroundColor;
+        return mProfileBackgroundColor;
     }
 
     public String getProfileBackgroundImageUrl() {
-        return profileBackgroundImageUrl;
-    }
-
-    public void setProfileBackgroundImageUrl(String profileBackgroundImageUrl) {
-        this.profileBackgroundImageUrl = profileBackgroundImageUrl;
+        return mProfileBackgroundImageUrl;
     }
 
     public String getProfileBackgroundImageUrlHttps() {
-        return profileBackgroundImageUrlHttps;
+        return mProfileBackgroundImageUrlHttps;
     }
 
-    public void setProfileBackgroundImageUrlHttps(String profileBackgroundImageUrlHttps) {
-        this.profileBackgroundImageUrlHttps = profileBackgroundImageUrlHttps;
-    }
-
-    public boolean isProfileBackgroundTile() {
-        return profileBackgroundTile;
-    }
-
-    public void setProfileBackgroundTile(boolean profileBackgroundTile) {
-        this.profileBackgroundTile = profileBackgroundTile;
+    public Boolean getProfileBackgroundTile() {
+        return mProfileBackgroundTile;
     }
 
     public String getProfileImageUrl() {
-        return profileImageUrl;
-    }
-
-    public void setProfileImageUrl(String profileImageUrl) {
-        this.profileImageUrl = profileImageUrl;
+        return mProfileImageUrl;
     }
 
     public String getProfileImageUrlHttps() {
-        return profileImageUrlHttps;
-    }
-
-    public void setProfileImageUrlHttps(String profileImageUrlHttps) {
-        this.profileImageUrlHttps = profileImageUrlHttps;
+        return mProfileImageUrlHttps;
     }
 
     public String getProfileLinkColor() {
-        return profileLinkColor;
+        return mProfileLinkColor;
     }
 
-    public void setProfileLinkColor(String profileLinkColor) {
-        this.profileLinkColor = profileLinkColor;
+    public Object getProfileLocation() {
+        return mProfileLocation;
     }
 
     public String getProfileSidebarBorderColor() {
-        return profileSidebarBorderColor;
-    }
-
-    public void setProfileSidebarBorderColor(String profileSidebarBorderColor) {
-        this.profileSidebarBorderColor = profileSidebarBorderColor;
+        return mProfileSidebarBorderColor;
     }
 
     public String getProfileSidebarFillColor() {
-        return profileSidebarFillColor;
-    }
-
-    public void setProfileSidebarFillColor(String profileSidebarFillColor) {
-        this.profileSidebarFillColor = profileSidebarFillColor;
+        return mProfileSidebarFillColor;
     }
 
     public String getProfileTextColor() {
-        return profileTextColor;
+        return mProfileTextColor;
     }
 
-    public void setProfileTextColor(String profileTextColor) {
-        this.profileTextColor = profileTextColor;
+    public Boolean getProfileUseBackgroundImage() {
+        return mProfileUseBackgroundImage;
     }
 
-    public boolean isProfileUseBackgroundImage() {
-        return profileUseBackgroundImage;
+    public Boolean getProtected() {
+        return mProtected;
     }
 
-    public void setProfileUseBackgroundImage(boolean profileUseBackgroundImage) {
-        this.profileUseBackgroundImage = profileUseBackgroundImage;
+    public String getScreenName() {
+        return mScreenName;
     }
 
-    public boolean isDefaultProfile() {
-        return defaultProfile;
+    public Long getStatusesCount() {
+        return mStatusesCount;
     }
 
-    public void setDefaultProfile(boolean defaultProfile) {
-        this.defaultProfile = defaultProfile;
+    public Object getTimeZone() {
+        return mTimeZone;
     }
 
-    public boolean isDefaultProfileImage() {
-        return defaultProfileImage;
+    public Object getUrl() {
+        return mUrl;
     }
 
-    public void setDefaultProfileImage(boolean defaultProfileImage) {
-        this.defaultProfileImage = defaultProfileImage;
+    public Object getUtcOffset() {
+        return mUtcOffset;
     }
 
-    public boolean isFollowing() {
-        return following;
+    public Boolean getVerified() {
+        return mVerified;
     }
 
-    public void setFollowing(boolean following) {
-        this.following = following;
-    }
+    public static class Builder {
 
-    public boolean isFollowRequestSent() {
-        return followRequestSent;
-    }
+        private Boolean mContributorsEnabled;
+        private String mCreatedAt;
+        private Boolean mDefaultProfile;
+        private Boolean mDefaultProfileImage;
+        private String mDescription;
+        private Long mFavouritesCount;
+        private Boolean mFollowRequestSent;
+        private Long mFollowersCount;
+        private Boolean mFollowing;
+        private Long mFriendsCount;
+        private Boolean mGeoEnabled;
+        private Long mId;
+        private String mIdStr;
+        private Boolean mIsTranslationEnabled;
+        private Boolean mIsTranslator;
+        private String mLang;
+        private Long mListedCount;
+        private String mLocation;
+        private Boolean mMuting;
+        private String mName;
+        private Boolean mNotifications;
+        private String mProfileBackgroundColor;
+        private String mProfileBackgroundImageUrl;
+        private String mProfileBackgroundImageUrlHttps;
+        private Boolean mProfileBackgroundTile;
+        private String mProfileImageUrl;
+        private String mProfileImageUrlHttps;
+        private String mProfileLinkColor;
+        private Object mProfileLocation;
+        private String mProfileSidebarBorderColor;
+        private String mProfileSidebarFillColor;
+        private String mProfileTextColor;
+        private Boolean mProfileUseBackgroundImage;
+        private Boolean mProtected;
+        private String mScreenName;
+        private Long mStatusesCount;
+        private Object mTimeZone;
+        private Object mUrl;
+        private Object mUtcOffset;
+        private Boolean mVerified;
 
-    public void setFollowRequestSent(boolean followRequestSent) {
-        this.followRequestSent = followRequestSent;
-    }
+        public User.Builder withContributorsEnabled(Boolean contributorsEnabled) {
+            mContributorsEnabled = contributorsEnabled;
+            return this;
+        }
 
-    public boolean isNotifications() {
-        return notifications;
-    }
+        public User.Builder withCreatedAt(String createdAt) {
+            mCreatedAt = createdAt;
+            return this;
+        }
 
-    public void setNotifications(boolean notifications) {
-        this.notifications = notifications;
-    }
+        public User.Builder withDefaultProfile(Boolean defaultProfile) {
+            mDefaultProfile = defaultProfile;
+            return this;
+        }
 
-    public boolean isMuting() {
-        return muting;
-    }
+        public User.Builder withDefaultProfileImage(Boolean defaultProfileImage) {
+            mDefaultProfileImage = defaultProfileImage;
+            return this;
+        }
 
-    public void setMuting(boolean muting) {
-        this.muting = muting;
+        public User.Builder withDescription(String description) {
+            mDescription = description;
+            return this;
+        }
+
+        public User.Builder withFavouritesCount(Long favouritesCount) {
+            mFavouritesCount = favouritesCount;
+            return this;
+        }
+
+        public User.Builder withFollowRequestSent(Boolean followRequestSent) {
+            mFollowRequestSent = followRequestSent;
+            return this;
+        }
+
+        public User.Builder withFollowersCount(Long followersCount) {
+            mFollowersCount = followersCount;
+            return this;
+        }
+
+        public User.Builder withFollowing(Boolean following) {
+            mFollowing = following;
+            return this;
+        }
+
+        public User.Builder withFriendsCount(Long friendsCount) {
+            mFriendsCount = friendsCount;
+            return this;
+        }
+
+        public User.Builder withGeoEnabled(Boolean geoEnabled) {
+            mGeoEnabled = geoEnabled;
+            return this;
+        }
+
+        public User.Builder withId(Long id) {
+            mId = id;
+            return this;
+        }
+
+        public User.Builder withIdStr(String idStr) {
+            mIdStr = idStr;
+            return this;
+        }
+
+        public User.Builder withIsTranslationEnabled(Boolean isTranslationEnabled) {
+            mIsTranslationEnabled = isTranslationEnabled;
+            return this;
+        }
+
+        public User.Builder withIsTranslator(Boolean isTranslator) {
+            mIsTranslator = isTranslator;
+            return this;
+        }
+
+        public User.Builder withLang(String lang) {
+            mLang = lang;
+            return this;
+        }
+
+        public User.Builder withListedCount(Long listedCount) {
+            mListedCount = listedCount;
+            return this;
+        }
+
+        public User.Builder withLocation(String location) {
+            mLocation = location;
+            return this;
+        }
+
+        public User.Builder withMuting(Boolean muting) {
+            mMuting = muting;
+            return this;
+        }
+
+        public User.Builder withName(String name) {
+            mName = name;
+            return this;
+        }
+
+        public User.Builder withNotifications(Boolean notifications) {
+            mNotifications = notifications;
+            return this;
+        }
+
+        public User.Builder withProfileBackgroundColor(String profileBackgroundColor) {
+            mProfileBackgroundColor = profileBackgroundColor;
+            return this;
+        }
+
+        public User.Builder withProfileBackgroundImageUrl(String profileBackgroundImageUrl) {
+            mProfileBackgroundImageUrl = profileBackgroundImageUrl;
+            return this;
+        }
+
+        public User.Builder withProfileBackgroundImageUrlHttps(String profileBackgroundImageUrlHttps) {
+            mProfileBackgroundImageUrlHttps = profileBackgroundImageUrlHttps;
+            return this;
+        }
+
+        public User.Builder withProfileBackgroundTile(Boolean profileBackgroundTile) {
+            mProfileBackgroundTile = profileBackgroundTile;
+            return this;
+        }
+
+        public User.Builder withProfileImageUrl(String profileImageUrl) {
+            mProfileImageUrl = profileImageUrl;
+            return this;
+        }
+
+        public User.Builder withProfileImageUrlHttps(String profileImageUrlHttps) {
+            mProfileImageUrlHttps = profileImageUrlHttps;
+            return this;
+        }
+
+        public User.Builder withProfileLinkColor(String profileLinkColor) {
+            mProfileLinkColor = profileLinkColor;
+            return this;
+        }
+
+        public User.Builder withProfileLocation(Object profileLocation) {
+            mProfileLocation = profileLocation;
+            return this;
+        }
+
+        public User.Builder withProfileSidebarBorderColor(String profileSidebarBorderColor) {
+            mProfileSidebarBorderColor = profileSidebarBorderColor;
+            return this;
+        }
+
+        public User.Builder withProfileSidebarFillColor(String profileSidebarFillColor) {
+            mProfileSidebarFillColor = profileSidebarFillColor;
+            return this;
+        }
+
+        public User.Builder withProfileTextColor(String profileTextColor) {
+            mProfileTextColor = profileTextColor;
+            return this;
+        }
+
+        public User.Builder withProfileUseBackgroundImage(Boolean profileUseBackgroundImage) {
+            mProfileUseBackgroundImage = profileUseBackgroundImage;
+            return this;
+        }
+
+        public User.Builder withProtected(Boolean mprotected ) {
+            mProtected = mprotected;
+            return this;
+        }
+
+        public User.Builder withScreenName(String screenName) {
+            mScreenName = screenName;
+            return this;
+        }
+
+        public User.Builder withStatusesCount(Long statusesCount) {
+            mStatusesCount = statusesCount;
+            return this;
+        }
+
+        public User.Builder withTimeZone(Object timeZone) {
+            mTimeZone = timeZone;
+            return this;
+        }
+
+        public User.Builder withUrl(Object url) {
+            mUrl = url;
+            return this;
+        }
+
+        public User.Builder withUtcOffset(Object utcOffset) {
+            mUtcOffset = utcOffset;
+            return this;
+        }
+
+        public User.Builder withVerified(Boolean verified) {
+            mVerified = verified;
+            return this;
+        }
+
+        public User build() {
+            User User = new User();
+            User.mContributorsEnabled = mContributorsEnabled;
+            User.mCreatedAt = mCreatedAt;
+            User.mDefaultProfile = mDefaultProfile;
+            User.mDefaultProfileImage = mDefaultProfileImage;
+            User.mDescription = mDescription;
+            User.mFavouritesCount = mFavouritesCount;
+            User.mFollowRequestSent = mFollowRequestSent;
+            User.mFollowersCount = mFollowersCount;
+            User.mFollowing = mFollowing;
+            User.mFriendsCount = mFriendsCount;
+            User.mGeoEnabled = mGeoEnabled;
+            User.mId = mId;
+            User.mIdStr = mIdStr;
+            User.mIsTranslationEnabled = mIsTranslationEnabled;
+            User.mIsTranslator = mIsTranslator;
+            User.mLang = mLang;
+            User.mListedCount = mListedCount;
+            User.mLocation = mLocation;
+            User.mMuting = mMuting;
+            User.mName = mName;
+            User.mNotifications = mNotifications;
+            User.mProfileBackgroundColor = mProfileBackgroundColor;
+            User.mProfileBackgroundImageUrl = mProfileBackgroundImageUrl;
+            User.mProfileBackgroundImageUrlHttps = mProfileBackgroundImageUrlHttps;
+            User.mProfileBackgroundTile = mProfileBackgroundTile;
+            User.mProfileImageUrl = mProfileImageUrl;
+            User.mProfileImageUrlHttps = mProfileImageUrlHttps;
+            User.mProfileLinkColor = mProfileLinkColor;
+            User.mProfileLocation = mProfileLocation;
+            User.mProfileSidebarBorderColor = mProfileSidebarBorderColor;
+            User.mProfileSidebarFillColor = mProfileSidebarFillColor;
+            User.mProfileTextColor = mProfileTextColor;
+            User.mProfileUseBackgroundImage = mProfileUseBackgroundImage;
+            User.mProtected = mProtected;
+            User.mScreenName = mScreenName;
+            User.mStatusesCount = mStatusesCount;
+            User.mTimeZone = mTimeZone;
+            User.mUrl = mUrl;
+            User.mUtcOffset = mUtcOffset;
+            User.mVerified = mVerified;
+            return User;
+        }
+
     }
 
 }
