@@ -1,10 +1,10 @@
 package com.challenger.ramyfradwan.twitterchallenge.UI;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class FollowersActivityFragment extends Fragment  {
+public class FollowersActivityFragment extends Fragment {
     public static final String PREFS_NAME = "MyPrefsFile";
     boolean hasLoggedIn;
     String user_id;
@@ -33,8 +33,9 @@ public class FollowersActivityFragment extends Fragment  {
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
+    private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -66,32 +67,17 @@ public class FollowersActivityFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View mView =  inflater.inflate(R.layout.fragment_followers2, container, false);
+        View mView = inflater.inflate(R.layout.fragment_followers2, container, false);
 
 
         view = mView.findViewById(R.id.list);
-        Log.e(getClass().getSimpleName(), "Adapter started from here");
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        view.setLayoutManager(llm);
-
-        view.setAdapter(new MyFollowersRecyclerViewAdapter());
+//        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+//        llm.setOrientation(LinearLayoutManager.VERTICAL);
+//        view.setLayoutManager(llm);
+//
+//        view.setAdapter(new MyFollowersRecyclerViewAdapter());
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = mView.getContext();
-            RecyclerView recyclerView = (RecyclerView) mView;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            if (ITEMS!=null) {
-                recyclerView.setAdapter(new MyFollowersRecyclerViewAdapter(ITEMS, getContext(), mListener));
-                Log.e(getClass().getSimpleName() + "  " , "ITEMS here is empty null");
-            }
-        }
-
 
 
 
@@ -109,15 +95,14 @@ public class FollowersActivityFragment extends Fragment  {
         Log.i(this.getClass().getName(), "User Name is : " + user_id);
 
         Log.i(this.getClass().getName(), "User ID is : " + user_Id);
-        FetchTwitterUsersList fetchTwitterUsersList = new FetchTwitterUsersList();
-         if (hasLoggedIn && view!=null) {
+        FetchTwitterUsersList fetchTwitterUsersList = new FetchTwitterUsersList(getContext());
+        if (hasLoggedIn && view != null) {
 
-            ITEMS = fetchTwitterUsersList.getUserList(user_Id, getContext(),view);
+            ITEMS = fetchTwitterUsersList.getUserList(user_Id, getContext(), view,mListener);
 
-        }else if (hasLoggedIn && view == null){
-             Log.e(getClass().getSimpleName() + "  RecyclerView is null", "view object is null from here");
-         }
-
+        } else if (hasLoggedIn && view == null) {
+            Log.e(getClass().getSimpleName() + "  RecyclerView is null", "view object is null from here");
+        }
 
 
         return mView;

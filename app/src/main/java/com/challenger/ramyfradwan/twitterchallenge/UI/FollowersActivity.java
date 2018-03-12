@@ -3,6 +3,7 @@ package com.challenger.ramyfradwan.twitterchallenge.UI;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +38,6 @@ public class FollowersActivity extends AppCompatActivity implements FollowersAct
         Log.i(this.getClass().getName(), "User Name is : " + user_id);
 
         Log.i(this.getClass().getName(), "User ID is : " + user_Id);
-        FetchTwitterUsersList fetchTwitterUsersList = new FetchTwitterUsersList();
         if(!hasLoggedIn)
         {
             //Go directly to main activity.
@@ -46,6 +46,11 @@ public class FollowersActivity extends AppCompatActivity implements FollowersAct
             startActivity(intent);
 //            finish();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
     }
 
     @Override

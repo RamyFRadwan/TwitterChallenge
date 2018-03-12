@@ -11,5 +11,4 @@
     app:layoutManager="LinearLayoutManager"
     tools:context="com.challenger.ramyfradwan.twitterchallenge.UI.FollowersActivity"
     tools:listitem="@layout/fragment_followers"
-    android:background="@color/colorAccentLght"
     android:tag="FollowersFragment"/>

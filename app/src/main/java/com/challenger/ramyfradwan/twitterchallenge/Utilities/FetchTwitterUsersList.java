@@ -1,6 +1,9 @@
 package com.challenger.ramyfradwan.twitterchallenge.Utilities;
 
+import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -26,18 +29,76 @@ import retrofit2.Response;
  * Created by RamyFRadwan on 3/7/2018.
  */
 
-public class FetchTwitterUsersList {
-    String TAG = getClass().getSimpleName();
-    FollowersModel followers;
+public class FetchTwitterUsersList extends AsyncTaskLoader<List<com.challenger.ramyfradwan.twitterchallenge.Model.User>> {
+    private String TAG = getClass().getSimpleName();
     private Context context;
+    private Long user_id ;
     private RecyclerView mview;
+    private FollowersModel followers;
+    private FollowersActivityFragment.OnListFragmentInteractionListener mListener;
 
-    public List<com.challenger.ramyfradwan.twitterchallenge.Model.User> getUserList(Long user_id, Context context, RecyclerView mView) {
+    public FetchTwitterUsersList(Context context) {
+        super(context);
+    }
+
+    public List<com.challenger.ramyfradwan.twitterchallenge.Model.User> getUserList
+            (Long user_id
+            , Context context
+            , RecyclerView mView
+            , FollowersActivityFragment.OnListFragmentInteractionListener mListener) {
         Log.i(FetchTwitterUsersList.class.getName() + "    Twitter USERNAME ", user_id.toString());
-
+        this.mListener = mListener;
         this.context = context;
         this.mview = mView;
+        this.user_id = user_id;
+
+        return loadInBackground();
+
+    }
+
+
+    public void view(List<com.challenger.ramyfradwan.twitterchallenge.Model.User> followersModel) {
+        MyFollowersRecyclerViewAdapter myFollowersRecyclerViewAdapter = new MyFollowersRecyclerViewAdapter(followersModel, context, new FollowersActivityFragment.OnListFragmentInteractionListener() {
+            @Override
+            public void onListFragmentInteraction(com.challenger.ramyfradwan.twitterchallenge.Model.User item) {
+                Toast.makeText(context, "Hello from the other side", Toast.LENGTH_LONG).show();
+            }
+        });
+        myFollowersRecyclerViewAdapter.notifyDataSetChanged();
+        if (mview != null) {
+//            Log.e(TAG, "Adapter started from here");
+//            LinearLayoutManager llm = new LinearLayoutManager(context);
+//            llm.setOrientation(LinearLayoutManager.VERTICAL);
+//            mview.setLayoutManager(llm);
 //
+//            mview.setAdapter(myFollowersRecyclerViewAdapter);
+
+            if (followersModel!=null ) {
+                RecyclerView recyclerView = (RecyclerView) mview;
+                if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                    recyclerView.setAdapter(new MyFollowersRecyclerViewAdapter(followersModel,context,mListener));
+                    Log.e(getClass().getSimpleName(), "Linear Adapter started from here");
+
+                } else  if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                    recyclerView.setLayoutManager(new GridLayoutManager(context,2));
+                    recyclerView.setAdapter(new MyFollowersRecyclerViewAdapter(followersModel,context,mListener));
+
+                    Log.e(getClass().getSimpleName(), "Grid Adapter started from here");
+
+                }
+//            if (ITEMS != null) {
+//                recyclerView.setAdapter(new MyFollowersRecyclerViewAdapter(ITEMS, getContext(), mListener));
+//                Log.e(getClass().getSimpleName() + "  ", "ITEMS here is empty null");
+//            }
+            }
+
+        } else
+            Log.e(TAG + "  Error ", "mView Recycler view is null");
+    }
+
+    @Override
+    public List<com.challenger.ramyfradwan.twitterchallenge.Model.User> loadInBackground() {
         final TwitterSession session = TwitterCore
                 .getInstance()
                 .getSessionManager()
@@ -60,7 +121,7 @@ public class FetchTwitterUsersList {
 
                 Long cursor = Long.valueOf(-1);
                 final MyTwitterApiClient myTwitterApiClient = new MyTwitterApiClient(session);
-                myTwitterApiClient.getCustomService().list(Long.valueOf(-1), id, 20, true, false)
+                myTwitterApiClient.getCustomService().list(Long.valueOf(-1), id, 200, true, false)
                         .enqueue(new Callback<FollowersModel>() {
 
                             @Override
@@ -71,7 +132,9 @@ public class FetchTwitterUsersList {
                                 if (response.body() != null) {
                                     Log.i("resp success bodynonull", "  " + response.body().getUsers().get(0).getDescription());
                                     followers = response.body();
-//                                    while (followers.getNextCursor() != Long.valueOf(0)) {
+                                    if (followers != null) {
+                                    }
+//                                    while ((followers != null ? followers.getNextCursor() : null) != Long.valueOf(0)) {
 //                                        myTwitterApiClient.getCustomService().list(followers.getNextCursor(), id, 20, true, false)
 //                                                .enqueue(new Callback<FollowersModel>() {
 //
@@ -95,7 +158,8 @@ public class FetchTwitterUsersList {
 //
 //
 //                                    }
-                                    view(followers.getUsers());
+                                    view(followers != null ? followers.getUsers() : null);
+
                                 }
 
                             }
@@ -120,29 +184,7 @@ public class FetchTwitterUsersList {
         });
 
 
-        if(followers!=null) return followers.getUsers();
+        if (followers != null) return followers.getUsers();
         else return new ArrayList<com.challenger.ramyfradwan.twitterchallenge.Model.User>();
-
-    }
-
-
-    public void view(List<com.challenger.ramyfradwan.twitterchallenge.Model.User> followersModel) {
-        MyFollowersRecyclerViewAdapter myFollowersRecyclerViewAdapter = new MyFollowersRecyclerViewAdapter(followersModel, context, new FollowersActivityFragment.OnListFragmentInteractionListener() {
-            @Override
-            public void onListFragmentInteraction(com.challenger.ramyfradwan.twitterchallenge.Model.User item) {
-                Toast.makeText(context, "Hello from the other side", Toast.LENGTH_LONG).show();
-            }
-        });
-        myFollowersRecyclerViewAdapter.notifyDataSetChanged();
-        if (mview != null) {
-            Log.e(TAG, "Adapter started from here");
-            LinearLayoutManager llm = new LinearLayoutManager(context);
-            llm.setOrientation(LinearLayoutManager.VERTICAL);
-            mview.setLayoutManager(llm);
-
-            mview.setAdapter(myFollowersRecyclerViewAdapter);
-
-        } else
-            Log.e(TAG + "  Error ", "mView Recycler view is null");
     }
 }
