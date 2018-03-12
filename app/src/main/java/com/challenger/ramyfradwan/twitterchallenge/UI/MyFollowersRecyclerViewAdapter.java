@@ -1,6 +1,7 @@
 package com.challenger.ramyfradwan.twitterchallenge.UI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
     public MyFollowersRecyclerViewAdapter() {
     }
 
+    private Context context;
 
     private static final String TAG = MyFollowersRecyclerViewAdapter.class.getSimpleName();
     private List<User> mValues = new ArrayList<>();
@@ -33,9 +35,10 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
         @Override
         public void onListFragmentInteraction(User item) {
 
-        }
+            Intent intent = new Intent();
+            intent.setClass(context, ProfileActivity.class);
+            context.startActivity(intent);        }
     };
-    private Context context;
 
 //    private String userName, userBio, profileImageURL;
 
@@ -56,7 +59,7 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         if (holder.userName != null) {
             holder.userName.setText(mValues.get(position).getName());
@@ -74,7 +77,10 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-//                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.mItem);
+                    Intent intent = new Intent();
+                    intent.setClass(context, ProfileActivity.class);
+                    context.startActivity(intent);
                 }
             }
         });

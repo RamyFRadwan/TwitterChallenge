@@ -17,8 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".UI.LoginActivity"
+        <activity
+            android:name=".UI.LoginActivity"
             android:theme="@style/Base.Theme.AppCompat.Light" />
         <activity
             android:name=".UI.FollowersActivity"
@@ -29,6 +29,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".UI.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName=".UI.FollowersActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.challenger.ramyfradwan.twitterchallenge.UI.FollowersActivity" />
         </activity>
     </application>
 
