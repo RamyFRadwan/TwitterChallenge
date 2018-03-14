@@ -4,16 +4,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 
-import com.challenger.ramyfradwan.twitterchallenge.Model.User;
+import com.challenger.ramyfradwan.twitterchallenge.Model.UserModel;
 import com.challenger.ramyfradwan.twitterchallenge.R;
-import com.challenger.ramyfradwan.twitterchallenge.Utilities.FetchTwitterUsersList;
 
 public class FollowersActivity extends AppCompatActivity implements FollowersActivityFragment.OnListFragmentInteractionListener {
     public static final String PREFS_NAME = "MyPrefsFile";
@@ -35,9 +31,9 @@ public class FollowersActivity extends AppCompatActivity implements FollowersAct
 
         Log.i(this.getClass().getName(), "Login status is : " + hasLoggedIn + "");
 
-        Log.i(this.getClass().getName(), "User Name is : " + user_id);
+        Log.i(this.getClass().getName(), "UserModel Name is : " + user_id);
 
-        Log.i(this.getClass().getName(), "User ID is : " + user_Id);
+        Log.i(this.getClass().getName(), "UserModel ID is : " + user_Id);
         if(!hasLoggedIn)
         {
             //Go directly to main activity.
@@ -54,7 +50,7 @@ public class FollowersActivity extends AppCompatActivity implements FollowersAct
     }
 
     @Override
-    public void onListFragmentInteraction(User item) {
+    public void onListFragmentInteraction(UserModel item) {
 
     }
 }

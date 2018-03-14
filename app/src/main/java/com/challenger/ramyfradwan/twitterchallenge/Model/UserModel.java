@@ -3,7 +3,9 @@ package com.challenger.ramyfradwan.twitterchallenge.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+import java.io.Serializable;
+
+public class UserModel implements Serializable{
 
     @SerializedName("contributors_enabled")
     private Boolean mContributorsEnabled;
@@ -289,249 +291,249 @@ public class User {
         private Object mUtcOffset;
         private Boolean mVerified;
 
-        public User.Builder withContributorsEnabled(Boolean contributorsEnabled) {
+        public UserModel.Builder withContributorsEnabled(Boolean contributorsEnabled) {
             mContributorsEnabled = contributorsEnabled;
             return this;
         }
 
-        public User.Builder withCreatedAt(String createdAt) {
+        public UserModel.Builder withCreatedAt(String createdAt) {
             mCreatedAt = createdAt;
             return this;
         }
 
-        public User.Builder withDefaultProfile(Boolean defaultProfile) {
+        public UserModel.Builder withDefaultProfile(Boolean defaultProfile) {
             mDefaultProfile = defaultProfile;
             return this;
         }
 
-        public User.Builder withDefaultProfileImage(Boolean defaultProfileImage) {
+        public UserModel.Builder withDefaultProfileImage(Boolean defaultProfileImage) {
             mDefaultProfileImage = defaultProfileImage;
             return this;
         }
 
-        public User.Builder withDescription(String description) {
+        public UserModel.Builder withDescription(String description) {
             mDescription = description;
             return this;
         }
 
-        public User.Builder withFavouritesCount(Long favouritesCount) {
+        public UserModel.Builder withFavouritesCount(Long favouritesCount) {
             mFavouritesCount = favouritesCount;
             return this;
         }
 
-        public User.Builder withFollowRequestSent(Boolean followRequestSent) {
+        public UserModel.Builder withFollowRequestSent(Boolean followRequestSent) {
             mFollowRequestSent = followRequestSent;
             return this;
         }
 
-        public User.Builder withFollowersCount(Long followersCount) {
+        public UserModel.Builder withFollowersCount(Long followersCount) {
             mFollowersCount = followersCount;
             return this;
         }
 
-        public User.Builder withFollowing(Boolean following) {
+        public UserModel.Builder withFollowing(Boolean following) {
             mFollowing = following;
             return this;
         }
 
-        public User.Builder withFriendsCount(Long friendsCount) {
+        public UserModel.Builder withFriendsCount(Long friendsCount) {
             mFriendsCount = friendsCount;
             return this;
         }
 
-        public User.Builder withGeoEnabled(Boolean geoEnabled) {
+        public UserModel.Builder withGeoEnabled(Boolean geoEnabled) {
             mGeoEnabled = geoEnabled;
             return this;
         }
 
-        public User.Builder withId(Long id) {
+        public UserModel.Builder withId(Long id) {
             mId = id;
             return this;
         }
 
-        public User.Builder withIdStr(String idStr) {
+        public UserModel.Builder withIdStr(String idStr) {
             mIdStr = idStr;
             return this;
         }
 
-        public User.Builder withIsTranslationEnabled(Boolean isTranslationEnabled) {
+        public UserModel.Builder withIsTranslationEnabled(Boolean isTranslationEnabled) {
             mIsTranslationEnabled = isTranslationEnabled;
             return this;
         }
 
-        public User.Builder withIsTranslator(Boolean isTranslator) {
+        public UserModel.Builder withIsTranslator(Boolean isTranslator) {
             mIsTranslator = isTranslator;
             return this;
         }
 
-        public User.Builder withLang(String lang) {
+        public UserModel.Builder withLang(String lang) {
             mLang = lang;
             return this;
         }
 
-        public User.Builder withListedCount(Long listedCount) {
+        public UserModel.Builder withListedCount(Long listedCount) {
             mListedCount = listedCount;
             return this;
         }
 
-        public User.Builder withLocation(String location) {
+        public UserModel.Builder withLocation(String location) {
             mLocation = location;
             return this;
         }
 
-        public User.Builder withMuting(Boolean muting) {
+        public UserModel.Builder withMuting(Boolean muting) {
             mMuting = muting;
             return this;
         }
 
-        public User.Builder withName(String name) {
+        public UserModel.Builder withName(String name) {
             mName = name;
             return this;
         }
 
-        public User.Builder withNotifications(Boolean notifications) {
+        public UserModel.Builder withNotifications(Boolean notifications) {
             mNotifications = notifications;
             return this;
         }
 
-        public User.Builder withProfileBackgroundColor(String profileBackgroundColor) {
+        public UserModel.Builder withProfileBackgroundColor(String profileBackgroundColor) {
             mProfileBackgroundColor = profileBackgroundColor;
             return this;
         }
 
-        public User.Builder withProfileBackgroundImageUrl(String profileBackgroundImageUrl) {
+        public UserModel.Builder withProfileBackgroundImageUrl(String profileBackgroundImageUrl) {
             mProfileBackgroundImageUrl = profileBackgroundImageUrl;
             return this;
         }
 
-        public User.Builder withProfileBackgroundImageUrlHttps(String profileBackgroundImageUrlHttps) {
+        public UserModel.Builder withProfileBackgroundImageUrlHttps(String profileBackgroundImageUrlHttps) {
             mProfileBackgroundImageUrlHttps = profileBackgroundImageUrlHttps;
             return this;
         }
 
-        public User.Builder withProfileBackgroundTile(Boolean profileBackgroundTile) {
+        public UserModel.Builder withProfileBackgroundTile(Boolean profileBackgroundTile) {
             mProfileBackgroundTile = profileBackgroundTile;
             return this;
         }
 
-        public User.Builder withProfileImageUrl(String profileImageUrl) {
+        public UserModel.Builder withProfileImageUrl(String profileImageUrl) {
             mProfileImageUrl = profileImageUrl;
             return this;
         }
 
-        public User.Builder withProfileImageUrlHttps(String profileImageUrlHttps) {
+        public UserModel.Builder withProfileImageUrlHttps(String profileImageUrlHttps) {
             mProfileImageUrlHttps = profileImageUrlHttps;
             return this;
         }
 
-        public User.Builder withProfileLinkColor(String profileLinkColor) {
+        public UserModel.Builder withProfileLinkColor(String profileLinkColor) {
             mProfileLinkColor = profileLinkColor;
             return this;
         }
 
-        public User.Builder withProfileLocation(Object profileLocation) {
+        public UserModel.Builder withProfileLocation(Object profileLocation) {
             mProfileLocation = profileLocation;
             return this;
         }
 
-        public User.Builder withProfileSidebarBorderColor(String profileSidebarBorderColor) {
+        public UserModel.Builder withProfileSidebarBorderColor(String profileSidebarBorderColor) {
             mProfileSidebarBorderColor = profileSidebarBorderColor;
             return this;
         }
 
-        public User.Builder withProfileSidebarFillColor(String profileSidebarFillColor) {
+        public UserModel.Builder withProfileSidebarFillColor(String profileSidebarFillColor) {
             mProfileSidebarFillColor = profileSidebarFillColor;
             return this;
         }
 
-        public User.Builder withProfileTextColor(String profileTextColor) {
+        public UserModel.Builder withProfileTextColor(String profileTextColor) {
             mProfileTextColor = profileTextColor;
             return this;
         }
 
-        public User.Builder withProfileUseBackgroundImage(Boolean profileUseBackgroundImage) {
+        public UserModel.Builder withProfileUseBackgroundImage(Boolean profileUseBackgroundImage) {
             mProfileUseBackgroundImage = profileUseBackgroundImage;
             return this;
         }
 
-        public User.Builder withProtected(Boolean mprotected ) {
+        public UserModel.Builder withProtected(Boolean mprotected ) {
             mProtected = mprotected;
             return this;
         }
 
-        public User.Builder withScreenName(String screenName) {
+        public UserModel.Builder withScreenName(String screenName) {
             mScreenName = screenName;
             return this;
         }
 
-        public User.Builder withStatusesCount(Long statusesCount) {
+        public UserModel.Builder withStatusesCount(Long statusesCount) {
             mStatusesCount = statusesCount;
             return this;
         }
 
-        public User.Builder withTimeZone(Object timeZone) {
+        public UserModel.Builder withTimeZone(Object timeZone) {
             mTimeZone = timeZone;
             return this;
         }
 
-        public User.Builder withUrl(Object url) {
+        public UserModel.Builder withUrl(Object url) {
             mUrl = url;
             return this;
         }
 
-        public User.Builder withUtcOffset(Object utcOffset) {
+        public UserModel.Builder withUtcOffset(Object utcOffset) {
             mUtcOffset = utcOffset;
             return this;
         }
 
-        public User.Builder withVerified(Boolean verified) {
+        public UserModel.Builder withVerified(Boolean verified) {
             mVerified = verified;
             return this;
         }
 
-        public User build() {
-            User User = new User();
-            User.mContributorsEnabled = mContributorsEnabled;
-            User.mCreatedAt = mCreatedAt;
-            User.mDefaultProfile = mDefaultProfile;
-            User.mDefaultProfileImage = mDefaultProfileImage;
-            User.mDescription = mDescription;
-            User.mFavouritesCount = mFavouritesCount;
-            User.mFollowRequestSent = mFollowRequestSent;
-            User.mFollowersCount = mFollowersCount;
-            User.mFollowing = mFollowing;
-            User.mFriendsCount = mFriendsCount;
-            User.mGeoEnabled = mGeoEnabled;
-            User.mId = mId;
-            User.mIdStr = mIdStr;
-            User.mIsTranslationEnabled = mIsTranslationEnabled;
-            User.mIsTranslator = mIsTranslator;
-            User.mLang = mLang;
-            User.mListedCount = mListedCount;
-            User.mLocation = mLocation;
-            User.mMuting = mMuting;
-            User.mName = mName;
-            User.mNotifications = mNotifications;
-            User.mProfileBackgroundColor = mProfileBackgroundColor;
-            User.mProfileBackgroundImageUrl = mProfileBackgroundImageUrl;
-            User.mProfileBackgroundImageUrlHttps = mProfileBackgroundImageUrlHttps;
-            User.mProfileBackgroundTile = mProfileBackgroundTile;
-            User.mProfileImageUrl = mProfileImageUrl;
-            User.mProfileImageUrlHttps = mProfileImageUrlHttps;
-            User.mProfileLinkColor = mProfileLinkColor;
-            User.mProfileLocation = mProfileLocation;
-            User.mProfileSidebarBorderColor = mProfileSidebarBorderColor;
-            User.mProfileSidebarFillColor = mProfileSidebarFillColor;
-            User.mProfileTextColor = mProfileTextColor;
-            User.mProfileUseBackgroundImage = mProfileUseBackgroundImage;
-            User.mProtected = mProtected;
-            User.mScreenName = mScreenName;
-            User.mStatusesCount = mStatusesCount;
-            User.mTimeZone = mTimeZone;
-            User.mUrl = mUrl;
-            User.mUtcOffset = mUtcOffset;
-            User.mVerified = mVerified;
-            return User;
+        public UserModel build() {
+            UserModel UserModel = new UserModel();
+            UserModel.mContributorsEnabled = mContributorsEnabled;
+            UserModel.mCreatedAt = mCreatedAt;
+            UserModel.mDefaultProfile = mDefaultProfile;
+            UserModel.mDefaultProfileImage = mDefaultProfileImage;
+            UserModel.mDescription = mDescription;
+            UserModel.mFavouritesCount = mFavouritesCount;
+            UserModel.mFollowRequestSent = mFollowRequestSent;
+            UserModel.mFollowersCount = mFollowersCount;
+            UserModel.mFollowing = mFollowing;
+            UserModel.mFriendsCount = mFriendsCount;
+            UserModel.mGeoEnabled = mGeoEnabled;
+            UserModel.mId = mId;
+            UserModel.mIdStr = mIdStr;
+            UserModel.mIsTranslationEnabled = mIsTranslationEnabled;
+            UserModel.mIsTranslator = mIsTranslator;
+            UserModel.mLang = mLang;
+            UserModel.mListedCount = mListedCount;
+            UserModel.mLocation = mLocation;
+            UserModel.mMuting = mMuting;
+            UserModel.mName = mName;
+            UserModel.mNotifications = mNotifications;
+            UserModel.mProfileBackgroundColor = mProfileBackgroundColor;
+            UserModel.mProfileBackgroundImageUrl = mProfileBackgroundImageUrl;
+            UserModel.mProfileBackgroundImageUrlHttps = mProfileBackgroundImageUrlHttps;
+            UserModel.mProfileBackgroundTile = mProfileBackgroundTile;
+            UserModel.mProfileImageUrl = mProfileImageUrl;
+            UserModel.mProfileImageUrlHttps = mProfileImageUrlHttps;
+            UserModel.mProfileLinkColor = mProfileLinkColor;
+            UserModel.mProfileLocation = mProfileLocation;
+            UserModel.mProfileSidebarBorderColor = mProfileSidebarBorderColor;
+            UserModel.mProfileSidebarFillColor = mProfileSidebarFillColor;
+            UserModel.mProfileTextColor = mProfileTextColor;
+            UserModel.mProfileUseBackgroundImage = mProfileUseBackgroundImage;
+            UserModel.mProtected = mProtected;
+            UserModel.mScreenName = mScreenName;
+            UserModel.mStatusesCount = mStatusesCount;
+            UserModel.mTimeZone = mTimeZone;
+            UserModel.mUrl = mUrl;
+            UserModel.mUtcOffset = mUtcOffset;
+            UserModel.mVerified = mVerified;
+            return UserModel;
         }
 
     }

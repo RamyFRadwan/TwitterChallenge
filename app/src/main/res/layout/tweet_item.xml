@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:layout_margin="8dp"
+    android:layout_gravity="center"
+    android:gravity="center">
+    <TextView
+        android:background="@color/tw__composer_white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:padding="8dp"
+        android:elevation="4dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="italic|bold"
+        android:id="@+id/tweet_item"
+        android:fontFamily="casual"
+        />
+
+</LinearLayout>

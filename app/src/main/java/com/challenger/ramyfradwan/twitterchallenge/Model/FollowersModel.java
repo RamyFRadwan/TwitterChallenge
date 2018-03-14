@@ -15,7 +15,7 @@ public class FollowersModel {
     @SerializedName("previous_cursor_str")
     private String mPreviousCursorStr;
     @SerializedName("users")
-    private List<User> mUsers;
+    private List<UserModel> mUserModels;
 
     public Long getNextCursor() {
         return mNextCursor;
@@ -33,8 +33,8 @@ public class FollowersModel {
         return mPreviousCursorStr;
     }
 
-    public List<User> getUsers() {
-        return mUsers;
+    public List<UserModel> getUsers() {
+        return mUserModels;
     }
 
     public static class Builder {
@@ -43,7 +43,7 @@ public class FollowersModel {
         private String mNextCursorStr;
         private Long mPreviousCursor;
         private String mPreviousCursorStr;
-        private List<User> mUsers;
+        private List<UserModel> mUserModels;
 
         public FollowersModel.Builder withNextCursor(Long nextCursor) {
             mNextCursor = nextCursor;
@@ -65,8 +65,8 @@ public class FollowersModel {
             return this;
         }
 
-        public FollowersModel.Builder withUsers(List<User> users) {
-            mUsers = users;
+        public FollowersModel.Builder withUsers(List<UserModel> userModels) {
+            mUserModels = userModels;
             return this;
         }
 
@@ -76,7 +76,7 @@ public class FollowersModel {
             FollowersModel.mNextCursorStr = mNextCursorStr;
             FollowersModel.mPreviousCursor = mPreviousCursor;
             FollowersModel.mPreviousCursorStr = mPreviousCursorStr;
-            FollowersModel.mUsers = mUsers;
+            FollowersModel.mUserModels = mUserModels;
             return FollowersModel;
         }
 

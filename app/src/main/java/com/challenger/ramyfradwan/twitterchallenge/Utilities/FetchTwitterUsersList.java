@@ -11,8 +11,9 @@ import android.widget.Toast;
 
 import com.challenger.ramyfradwan.twitterchallenge.API.MyTwitterApiClient;
 import com.challenger.ramyfradwan.twitterchallenge.Model.FollowersModel;
+import com.challenger.ramyfradwan.twitterchallenge.Model.UserModel;
 import com.challenger.ramyfradwan.twitterchallenge.UI.FollowersActivityFragment;
-import com.challenger.ramyfradwan.twitterchallenge.UI.MyFollowersRecyclerViewAdapter;
+import com.challenger.ramyfradwan.twitterchallenge.Adapter.MyFollowersRecyclerViewAdapter;
 import com.twitter.sdk.android.core.TwitterAuthToken;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterSession;
@@ -29,7 +30,7 @@ import retrofit2.Response;
  * Created by RamyFRadwan on 3/7/2018.
  */
 
-public class FetchTwitterUsersList extends AsyncTaskLoader<List<com.challenger.ramyfradwan.twitterchallenge.Model.User>> {
+public class FetchTwitterUsersList extends AsyncTaskLoader<List<UserModel>> {
     private String TAG = getClass().getSimpleName();
     private Context context;
     private Long user_id ;
@@ -41,7 +42,7 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<com.challenger.r
         super(context);
     }
 
-    public List<com.challenger.ramyfradwan.twitterchallenge.Model.User> getUserList
+    public List<UserModel> getUserList
             (Long user_id
             , Context context
             , RecyclerView mView
@@ -57,10 +58,10 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<com.challenger.r
     }
 
 
-    public void view(List<com.challenger.ramyfradwan.twitterchallenge.Model.User> followersModel) {
+    public void view(List<UserModel> followersModel) {
         MyFollowersRecyclerViewAdapter myFollowersRecyclerViewAdapter = new MyFollowersRecyclerViewAdapter(followersModel, context, new FollowersActivityFragment.OnListFragmentInteractionListener() {
             @Override
-            public void onListFragmentInteraction(com.challenger.ramyfradwan.twitterchallenge.Model.User item) {
+            public void onListFragmentInteraction(UserModel item) {
                 Toast.makeText(context, "Hello from the other side", Toast.LENGTH_LONG).show();
             }
         });
@@ -98,7 +99,7 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<com.challenger.r
     }
 
     @Override
-    public List<com.challenger.ramyfradwan.twitterchallenge.Model.User> loadInBackground() {
+    public List<UserModel> loadInBackground() {
         final TwitterSession session = TwitterCore
                 .getInstance()
                 .getSessionManager()
@@ -185,6 +186,6 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<com.challenger.r
 
 
         if (followers != null) return followers.getUsers();
-        else return new ArrayList<com.challenger.ramyfradwan.twitterchallenge.Model.User>();
+        else return new ArrayList<UserModel>();
     }
 }

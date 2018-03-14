@@ -1,7 +1,8 @@
-package com.challenger.ramyfradwan.twitterchallenge.UI;
+package com.challenger.ramyfradwan.twitterchallenge.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.challenger.ramyfradwan.twitterchallenge.Model.User;
+import com.challenger.ramyfradwan.twitterchallenge.Model.UserModel;
 import com.challenger.ramyfradwan.twitterchallenge.R;
+import com.challenger.ramyfradwan.twitterchallenge.UI.FollowersActivityFragment;
+import com.challenger.ramyfradwan.twitterchallenge.UI.ProfileActivity;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link User} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link UserModel} and makes a call to the
  * specified {@link FollowersActivityFragment.OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
@@ -27,13 +30,15 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
     public MyFollowersRecyclerViewAdapter() {
     }
 
+    SharedPreferences mSharedPref;
     private Context context;
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     private static final String TAG = MyFollowersRecyclerViewAdapter.class.getSimpleName();
-    private List<User> mValues = new ArrayList<>();
+    private List<UserModel> mValues = new ArrayList<>();
     private FollowersActivityFragment.OnListFragmentInteractionListener mListener = new FollowersActivityFragment.OnListFragmentInteractionListener() {
         @Override
-        public void onListFragmentInteraction(User item) {
+        public void onListFragmentInteraction(UserModel item) {
 
             Intent intent = new Intent();
             intent.setClass(context, ProfileActivity.class);
@@ -42,7 +47,7 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
 
 //    private String userName, userBio, profileImageURL;
 
-    public MyFollowersRecyclerViewAdapter(List<User> items, Context context, FollowersActivityFragment.OnListFragmentInteractionListener listener) {
+    public MyFollowersRecyclerViewAdapter(List<UserModel> items, Context context, FollowersActivityFragment.OnListFragmentInteractionListener listener) {
         Log.i(TAG, "RecyclerView Adapter initiated");
         Log.i(TAG + " Users", items.get(1).getName());
         mValues = items;
@@ -71,6 +76,12 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
         if (holder.profileImage != null) {
             Picasso.get().load(mValues.get(position).getProfileImageUrl()).resize(500, 500).into(holder.profileImage);
         }
+
+         mSharedPref = context.getSharedPreferences(PREFS_NAME, 0); // 0 - for private mode
+
+        final SharedPreferences.Editor editor = mSharedPref.edit();
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +91,17 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
                     mListener.onListFragmentInteraction(holder.mItem);
                     Intent intent = new Intent();
                     intent.setClass(context, ProfileActivity.class);
-                    context.startActivity(intent);
+
+                    editor.putString("screenname", holder.mItem.getScreenName());
+                    editor.putLong("user_id", holder.mItem.getId());
+                    editor.putString("description",holder.mItem.getDescription());
+                    editor.putString("profileImageUrl",holder.mItem.getProfileImageUrl());
+                    editor.putString("background_image_url",holder.mItem.getProfileBackgroundImageUrl());
+
+
+
+                    // Commit the edits!
+                    editor.commit();                    context.startActivity(intent);
                 }
             }
         });
@@ -115,7 +136,7 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
 
         //        public final TextView mIdView;
 //        public final TextView mContentView;
-        User mItem;
+        UserModel mItem;
 
         ViewHolder(View view) {
             super(view);

@@ -2,18 +2,15 @@ package com.challenger.ramyfradwan.twitterchallenge.UI;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.challenger.ramyfradwan.twitterchallenge.Model.User;
+import com.challenger.ramyfradwan.twitterchallenge.Model.UserModel;
 import com.challenger.ramyfradwan.twitterchallenge.R;
 import com.challenger.ramyfradwan.twitterchallenge.Utilities.FetchTwitterUsersList;
 
@@ -28,7 +25,7 @@ public class FollowersActivityFragment extends Fragment {
     String user_id;
     Long user_Id;
     RecyclerView view;
-    List<User> ITEMS;
+    List<UserModel> ITEMS;
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -92,9 +89,9 @@ public class FollowersActivityFragment extends Fragment {
 
         Log.i(this.getClass().getName(), "Login status is : " + hasLoggedIn + "");
 
-        Log.i(this.getClass().getName(), "User Name is : " + user_id);
+        Log.i(this.getClass().getName(), "UserModel Name is : " + user_id);
 
-        Log.i(this.getClass().getName(), "User ID is : " + user_Id);
+        Log.i(this.getClass().getName(), "UserModel ID is : " + user_Id);
         FetchTwitterUsersList fetchTwitterUsersList = new FetchTwitterUsersList(getContext());
         if (hasLoggedIn && view != null) {
 
@@ -139,7 +136,7 @@ public class FollowersActivityFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(User item);
+        void onListFragmentInteraction(UserModel item);
 
     }
 }

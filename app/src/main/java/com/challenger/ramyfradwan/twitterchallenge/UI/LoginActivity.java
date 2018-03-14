@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i("Twitter Session", "Twitter user_id is : " + user_id);
 
                 //Using Shared preferences for keeping login state
-                //User has successfully logged in, save this information
+                //UserModel has successfully logged in, save this information
                 // We need an Editor object to make preference changes.
                 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0); // 0 - for private mode
 

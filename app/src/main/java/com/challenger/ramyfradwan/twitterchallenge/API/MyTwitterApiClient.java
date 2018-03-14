@@ -1,6 +1,5 @@
 package com.challenger.ramyfradwan.twitterchallenge.API;
 
-import com.challenger.ramyfradwan.twitterchallenge.API.Api;
 import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterSession;
 

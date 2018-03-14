@@ -1,10 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.challenger.ramyfradwan.twitterchallenge.UI.ProfileActivityFragment"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".UI.ProfileActivityFragment"
     tools:showIn="@layout/activity_profile">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/elly"
+        android:background="@drawable/scrim">
+
+        <ImageView
+
+            android:id="@+id/background"
+            android:layout_width="wrap_content"
+            android:layout_height="192dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/profilebackground"
+            />
+
+        <LinearLayout
+            android:id="@+id/basicInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/background"
+
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profileimage"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="8dp"
+                android:elevation="4dp"
+                android:padding="2dp"
+                android:src="@drawable/profile512"
+                android:textColor="#FFFFFF"
+                app:civ_shadow="true"
+                app:civ_shadow_radius="2" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/profileimage"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/UserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:padding="8dp"
+                    android:text="@string/user_name"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/UserBio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:padding="4dp"
+                    android:text="@string/bio"
+                    android:textColor="#FeFeFe"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/tweetlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/elly"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+
+        />
+</RelativeLayout>

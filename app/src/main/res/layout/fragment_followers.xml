@@ -2,37 +2,46 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:elevation="4dp"
+    android:layout_margin="8dp">
      <com.mikhaellopez.circularimageview.CircularImageView
-        android:padding="8dp"
-        android:layout_margin="8dp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:padding="2dp"
+         android:elevation="4dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/profileimage"
         app:civ_shadow="true"
         app:civ_shadow_radius="2"
-        app:civ_shadow_color="@color/colorPrimary"
-        android:src="@drawable/profile512"/>
+        app:civ_shadow_color="@color/colorPrimaryDark"
+        android:src="@drawable/profile512"
+         android:foregroundGravity="center"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_margin="8dp"
+        android:elevation="2dp"
         android:layout_toEndOf="@id/profileimage">
 
         <TextView
+            android:elevation="2dp"
             android:id="@+id/UserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:padding="8dp"
             android:text="@string/user_name"
+            android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
         <TextView
+            android:elevation="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/UserBio"
             android:textSize="16sp"
+            android:textStyle="italic"
             android:textColor="@color/colorAccentLght"
             android:text="@string/bio"
             android:layout_marginBottom="4dp"
