@@ -2,6 +2,7 @@ package com.challenger.ramyfradwan.twitterchallenge.UI;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.challenger.ramyfradwan.twitterchallenge.R;
 import com.challenger.ramyfradwan.twitterchallenge.Utilities.FetchTwitterProfile;
+import com.challenger.ramyfradwan.twitterchallenge.Utilities.ZoomImage;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 import com.twitter.sdk.android.core.models.Tweet;
@@ -38,21 +40,23 @@ public class ProfileActivityFragment extends Fragment {
     }
 
 
-
+    View view;
     ImageView background;
     CircularImageView circularImageView;
     TextView Name,Bio;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+         view = inflater.inflate(R.layout.fragment_profile, container, false);
         SharedPreferences settings = getContext().getSharedPreferences(PREFS_NAME, 0); // 0 - for private mode
         ListView listView = (ListView) view.findViewById(R.id.tweetlist);
-
+        // UI components init
         circularImageView = (CircularImageView) view.findViewById(R.id.profileimage);
         Name = view.findViewById(R.id.UserName);
         Bio = view.findViewById(R.id.UserBio);
         background = view.findViewById(R.id.background);
+
+        // getting data from sharedpreferences
         this.userId = settings.getLong("user_id",0);
         this.screenName = settings.getString("screenname"," ");
         this.userBio=settings.getString("description","No Bio for this userModel");
@@ -60,17 +64,37 @@ public class ProfileActivityFragment extends Fragment {
         this.backgroundImageUrl = settings.getString("background_image_url","");
         this.screenName = settings.getString("screenname","");
 
+
+        // Populating UI components
         Picasso.get().load(profileImageUrl).into(circularImageView);
         if(!Objects.equals(backgroundImageUrl, ""))
             Picasso.get().load(backgroundImageUrl).into(background);
         Name.setText(screenName);
         Bio.setText(userBio);
         Log.i(getClass().getSimpleName() , "Screen Name here is" + screenName);
+
+
+
+
+        // Setting Zoom Actions
+        circularImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable drawable = circularImageView.getDrawable();
+                ZoomImage zom =new ZoomImage(v,drawable,view);
+            }
+        });
+        background.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable drawable = background.getDrawable();
+
+                ZoomImage zom =new ZoomImage(v,drawable,view);
+            }
+        });
+        // calling the class for dealing with tweets
         FetchTwitterProfile fetchTwitterProfile = new FetchTwitterProfile(getContext(), screenName,listView);
-//        List<Tweet> tweets = fetchTwitterProfile.loadInBackground();
-//        if (tweets != null) {
-//            Log.i(getClass().getSimpleName() , tweets.toString());
-//        }
+
         return view;
     }
 

@@ -25,8 +25,7 @@ import retrofit2.Response;
  */
 
 public class FetchTwitterProfile extends AsyncTaskLoader<List<String>> {
-    private Long userId;
-    private String screenName ,userBio,profileImageUrl,backgroundImageUrl;
+    private String screenName;
      List<String> tweets = new ArrayList<>();
     public static final String PREFS_NAME = "MyPrefsFile";
     private ListView listView;
@@ -36,18 +35,10 @@ public class FetchTwitterProfile extends AsyncTaskLoader<List<String>> {
         super(context);
 
         this.context = context;
-//        this.userId =userId;
-//        this.userBio = userBio;
-//        this.profileImageUrl = profileImageUrl;
-//        this.backgroundImageUrl = backgroundImageUrl;
+
         this.screenName = screen_name;
         this.listView = listView;
-        //        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0); // 0 - for private mode
-//
-//        this.userId = settings.getLong("user_id",0);
-//        this.screenName = settings.getString("screenname"," ");
-//        this.userBio=settings.getString("description","No Bio for this user");
-//        Log.i(getClass().getSimpleName() , "ID here is" + userId);
+
         List<String> tweeets = loadInBackground();
         if (tweeets != null) {
             Log.i(getClass().getSimpleName() + "  Tweets", tweeets.toString());
@@ -68,7 +59,6 @@ public class FetchTwitterProfile extends AsyncTaskLoader<List<String>> {
                 .getInstance()
                 .getSessionManager().getActiveSession();
 
-        Log.i(getClass().getSimpleName() , "ID here is" + userId);
         //Here we get all the details of user's twitter account
         Log.i(getClass().getSimpleName() + "  Screen Name" , screenName);
 

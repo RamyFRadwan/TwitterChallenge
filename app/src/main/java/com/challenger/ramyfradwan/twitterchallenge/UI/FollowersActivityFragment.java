@@ -68,18 +68,8 @@ public class FollowersActivityFragment extends Fragment {
 
 
         view = mView.findViewById(R.id.list);
-//        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-//        llm.setOrientation(LinearLayoutManager.VERTICAL);
-//        view.setLayoutManager(llm);
-//
-//        view.setAdapter(new MyFollowersRecyclerViewAdapter());
 
-        // Set the adapter
-
-
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        // Setting data via Shared Preferences
 
         SharedPreferences settings = getActivity().getSharedPreferences(PREFS_NAME, 0);
         //Get "hasLoggedIn" value. If the value doesn't exist yet false is returned

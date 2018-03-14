@@ -33,7 +33,6 @@ import retrofit2.Response;
 public class FetchTwitterUsersList extends AsyncTaskLoader<List<UserModel>> {
     private String TAG = getClass().getSimpleName();
     private Context context;
-    private Long user_id ;
     private RecyclerView mview;
     private FollowersModel followers;
     private FollowersActivityFragment.OnListFragmentInteractionListener mListener;
@@ -51,7 +50,6 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<UserModel>> {
         this.mListener = mListener;
         this.context = context;
         this.mview = mView;
-        this.user_id = user_id;
 
         return loadInBackground();
 
@@ -67,12 +65,7 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<UserModel>> {
         });
         myFollowersRecyclerViewAdapter.notifyDataSetChanged();
         if (mview != null) {
-//            Log.e(TAG, "Adapter started from here");
-//            LinearLayoutManager llm = new LinearLayoutManager(context);
-//            llm.setOrientation(LinearLayoutManager.VERTICAL);
-//            mview.setLayoutManager(llm);
-//
-//            mview.setAdapter(myFollowersRecyclerViewAdapter);
+
 
             if (followersModel!=null ) {
                 RecyclerView recyclerView = (RecyclerView) mview;
@@ -88,10 +81,7 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<UserModel>> {
                     Log.e(getClass().getSimpleName(), "Grid Adapter started from here");
 
                 }
-//            if (ITEMS != null) {
-//                recyclerView.setAdapter(new MyFollowersRecyclerViewAdapter(ITEMS, getContext(), mListener));
-//                Log.e(getClass().getSimpleName() + "  ", "ITEMS here is empty null");
-//            }
+
             }
 
         } else
@@ -174,7 +164,6 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<UserModel>> {
                             }
                         });
 
-//                FollowersModels = response.body();
             }
 
             @Override
