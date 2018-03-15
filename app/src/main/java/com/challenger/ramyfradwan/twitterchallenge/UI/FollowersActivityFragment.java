@@ -2,14 +2,19 @@ package com.challenger.ramyfradwan.twitterchallenge.UI;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.challenger.ramyfradwan.twitterchallenge.Adapter.MyFollowersRecyclerViewAdapter;
 import com.challenger.ramyfradwan.twitterchallenge.Model.UserModel;
 import com.challenger.ramyfradwan.twitterchallenge.R;
 import com.challenger.ramyfradwan.twitterchallenge.Utilities.FetchTwitterUsersList;
@@ -82,15 +87,31 @@ public class FollowersActivityFragment extends Fragment {
         Log.i(this.getClass().getName(), "UserModel Name is : " + user_id);
 
         Log.i(this.getClass().getName(), "UserModel ID is : " + user_Id);
-        FetchTwitterUsersList fetchTwitterUsersList = new FetchTwitterUsersList(getContext());
-        if (hasLoggedIn && view != null) {
+        if (!isNetworkConnected() && hasLoggedIn && view != null){
 
-            ITEMS = fetchTwitterUsersList.getUserList(user_Id, getContext(), view,mListener);
+            RecyclerView recyclerView = (RecyclerView) view;
+            if (getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerView.setAdapter(new MyFollowersRecyclerViewAdapter(getContext(),mListener));
+                Log.e(getClass().getSimpleName(), "Linear Adapter started from here ");
 
-        } else if (hasLoggedIn && view == null) {
-            Log.e(getClass().getSimpleName() + "  RecyclerView is null", "view object is null from here");
+            } else  if (getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+                recyclerView.setAdapter(new MyFollowersRecyclerViewAdapter(getContext(),mListener));
+
+                Log.e(getClass().getSimpleName(), "Grid Adapter started from here OFFLINE");
+
+            }
+        }else if(isNetworkConnected()) {
+            FetchTwitterUsersList fetchTwitterUsersList = new FetchTwitterUsersList(getContext());
+            if (hasLoggedIn && view != null) {
+
+                ITEMS = fetchTwitterUsersList.getUserList(user_Id, getContext(), view, mListener);
+
+            } else if (hasLoggedIn && view == null) {
+                Log.e(getClass().getSimpleName() + "  RecyclerView is null", "view object is null from here");
+            }
         }
-
 
         return mView;
     }
@@ -128,5 +149,12 @@ public class FollowersActivityFragment extends Fragment {
         // TODO: Update argument type and name
         void onListFragmentInteraction(UserModel item);
 
+    }
+
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 }

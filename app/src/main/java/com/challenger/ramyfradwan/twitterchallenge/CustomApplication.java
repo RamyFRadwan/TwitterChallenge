@@ -6,6 +6,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 import com.challenger.ramyfradwan.twitterchallenge.Utilities.Constants;
+import com.jianastrero.sweetmotherofsqlite.SweetSQLiteConfig;
 import com.twitter.sdk.android.core.DefaultLogger;
 import com.twitter.sdk.android.core.Twitter;
 import com.twitter.sdk.android.core.TwitterApiClient;
@@ -20,6 +21,7 @@ import com.twitter.sdk.android.core.TwitterSession;
 public class CustomApplication extends Application {
     public void onCreate() {
         super.onCreate();
+        SweetSQLiteConfig.init(this, "UsersOfflineDB");
         TwitterConfig config = new TwitterConfig.Builder(this)
                 .logger(new DefaultLogger(Log.DEBUG))
                 .twitterAuthConfig(new TwitterAuthConfig(Constants.getSakalassa(), Constants.getSakalassaa())).build();

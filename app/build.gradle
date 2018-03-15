@@ -47,4 +47,8 @@ dependencies {
 
     //retrofit
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
+
+    //Sweet Mother of SQLite ORM
+    compile 'com.github.jianastrero:Sweet-Mother-of-SQLite:v1.0'
+
 }
