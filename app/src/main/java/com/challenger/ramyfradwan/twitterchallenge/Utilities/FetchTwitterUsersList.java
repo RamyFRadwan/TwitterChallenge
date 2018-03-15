@@ -3,20 +3,14 @@ package com.challenger.ramyfradwan.twitterchallenge.Utilities;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.net.ConnectivityManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.challenger.ramyfradwan.twitterchallenge.API.MyTwitterApiClient;
-import com.challenger.ramyfradwan.twitterchallenge.DB.FilledDB;
 import com.challenger.ramyfradwan.twitterchallenge.DB.FollowersDB;
-import com.challenger.ramyfradwan.twitterchallenge.DB.IDDB;
-import com.challenger.ramyfradwan.twitterchallenge.DB.UserBio;
-import com.challenger.ramyfradwan.twitterchallenge.DB.UserCountDB;
-import com.challenger.ramyfradwan.twitterchallenge.DB.UserNameDB;
+import com.challenger.ramyfradwan.twitterchallenge.DB.FollowersMetaDB;
 import com.challenger.ramyfradwan.twitterchallenge.Model.FollowersModel;
 import com.challenger.ramyfradwan.twitterchallenge.Model.UserModel;
 import com.challenger.ramyfradwan.twitterchallenge.UI.FollowersActivityFragment;
@@ -44,11 +38,8 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<UserModel>> {
     private FollowersModel followers;
     private FollowersActivityFragment.OnListFragmentInteractionListener mListener;
 
-    private UserNameDB userNameDB;
-    private UserBio userBio;
-    private UserCountDB userCountDB;
-    private IDDB iddb;
-    private FilledDB filledDB;
+    private FollowersDB followersDB;
+    private FollowersMetaDB followersMetaDB;
 
     public FetchTwitterUsersList(Context context) {
         super(context);
@@ -109,11 +100,8 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<UserModel>> {
                 .getActiveSession();
         TwitterAuthToken authToken = session.getAuthToken();
 
-        userNameDB = (UserNameDB) new UserNameDB();
-        userBio = (UserBio) new UserBio();
-        userCountDB = (UserCountDB) new UserCountDB();
-        iddb = (IDDB) new IDDB();
-        filledDB = (FilledDB) new FilledDB();
+        followersDB = new FollowersDB();
+        followersMetaDB = new FollowersMetaDB();
 
         //Here we get all the details of user's twitter account
 
@@ -141,22 +129,18 @@ public class FetchTwitterUsersList extends AsyncTaskLoader<List<UserModel>> {
                                 if (response.body() != null) {
                                     Log.i("resp success bodynonull", "  " + response.body().getUsers().get(0).getDescription());
                                     followers = response.body();
-                                    if (followers != null && !filledDB.isFilled()) {
+                                    if (followers != null && !followersMetaDB.isFilled()) {
                                         for(int i = 0 ; i <followers.getUsers().size(); i++){
-                                            iddb.setId(followers.getUsers().get(i).getId());
-                                            userNameDB.setScreenName(followers.getUsers().get(i).getName());
-                                            userBio.setBio(followers.getUsers().get(i).getDescription());
-                                            iddb.save();
-                                            userNameDB.save();
-                                            userBio.save();
+                                            followersDB = new FollowersDB(followers.getUsers().get(i).getName(),followers.getUsers().get(i).getDescription(),followers.getUsers().get(i).getId());
+
+                                            followersDB.save();
+
                                             if (i==followers.getUsers().size()-1)
                                                 Log.i(getClass().getSimpleName() + "Database","DAta Inserted Succefully");
                                         }
-                                        userCountDB.setUsersCounter(followers.getUsers().size());
-                                        userCountDB.save();
+                                        followersMetaDB = new FollowersMetaDB(followers.getUsers().size(),true);
+                                        followersMetaDB.save();
 
-                                        filledDB.setFilled(true);
-                                        filledDB.save();
 
                                     }
 //                                    while ((followers != null ? followers.getNextCursor() : null) != Long.valueOf(0)) {

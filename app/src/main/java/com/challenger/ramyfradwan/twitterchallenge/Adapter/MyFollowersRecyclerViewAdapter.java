@@ -13,12 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.challenger.ramyfradwan.twitterchallenge.DB.FilledDB;
 import com.challenger.ramyfradwan.twitterchallenge.DB.FollowersDB;
-import com.challenger.ramyfradwan.twitterchallenge.DB.IDDB;
-import com.challenger.ramyfradwan.twitterchallenge.DB.UserBio;
-import com.challenger.ramyfradwan.twitterchallenge.DB.UserCountDB;
-import com.challenger.ramyfradwan.twitterchallenge.DB.UserNameDB;
+import com.challenger.ramyfradwan.twitterchallenge.DB.FollowersMetaDB;
 import com.challenger.ramyfradwan.twitterchallenge.Model.UserModel;
 import com.challenger.ramyfradwan.twitterchallenge.R;
 import com.challenger.ramyfradwan.twitterchallenge.UI.FollowersActivityFragment;
@@ -27,9 +23,7 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link UserModel} and makes a call to the
@@ -40,17 +34,11 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
     public MyFollowersRecyclerViewAdapter() {
     }
 
-    ArrayList<String> usersNameOffline = new ArrayList<>();
-    ArrayList<String> usersBioOffline = new ArrayList<>();
+    private String []  usersNameOffline ;
+    private String [] usersBioOffline;
 
-    SharedPreferences mSharedPref;
     private Context context;
-    public static final String PREFS_NAME = "MyPrefsFile";
-    private UserNameDB userNameDB;
-    private UserBio userBio;
-    private UserCountDB userCountDB;
-    private IDDB iddb;
-    private FilledDB filledDB;
+    private static final String PREFS_NAME = "MyPrefsFile";
 
     private static final String TAG = MyFollowersRecyclerViewAdapter.class.getSimpleName();
     private List<UserModel> mValues = new ArrayList<>();
@@ -78,17 +66,17 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
         Log.i(TAG, "RecyclerView Adapter initiated");
         mListener = listener;
         this.context = context;
-        userNameDB = (UserNameDB) new UserNameDB();
-        userBio = (UserBio) new UserBio();
-        userCountDB = (UserCountDB) new UserCountDB();
-        iddb = (IDDB) new IDDB();
-        filledDB = (FilledDB) new FilledDB();
-        Log.i("Followers DB" , "  " + userCountDB.load("usersCounter >= 0"));
-//        for (int i = 0; i < userCountDB.getUsersCounter(); i++) {
-//            usersNameOffline.set(i, userNameDB.load());
-//            usersBioOffline.set(i, userBio.load("ScreenName LIKE '%%'"));
-//
-//        }
+        Log.i("Followers DB " , "  " + FollowersMetaDB.find(FollowersMetaDB.class,"USER_COUNT >= ?","0"));
+        List<FollowersDB> followersDB = FollowersDB.listAll(FollowersDB.class);
+
+        usersNameOffline = new String[followersDB.size()];
+        usersBioOffline = new String[followersDB.size()];
+        for (int i = 0; i < followersDB.size(); i++) {
+            usersNameOffline [i] = followersDB.get(i).getScreenName();
+            usersBioOffline [i] = followersDB.get(i).getBio();
+
+
+        }
     }
 
 
@@ -121,7 +109,7 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
                 Picasso.get().load(mValues.get(position).getProfileImageUrl()).resize(500, 500).into(holder.profileImage);
             }
 
-            mSharedPref = context.getSharedPreferences(PREFS_NAME, 0); // 0 - for private mode
+            SharedPreferences mSharedPref = context.getSharedPreferences(PREFS_NAME, 0);
 
             final SharedPreferences.Editor editor = mSharedPref.edit();
 
@@ -152,16 +140,16 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
                 }
             });
         } else if (!isNetworkConnected()) {
-            Log.i(TAG + "ViewHolder was celled ", "Offline" + usersNameOffline.get(position));
+            Log.i(TAG + "ViewHolder was celled ", "Offline" + usersNameOffline[position]);
 
 
             if (holder.userName != null) {
-                holder.userName.setText(usersNameOffline.get(position));
-                Log.e(TAG + "ViewHolder userName ", usersNameOffline.get(position));
+                holder.userName.setText(usersNameOffline[position]);
+                Log.e(TAG + "ViewHolder userName ", usersNameOffline[position]);
             }
             if (holder.userBio != null) {
-                holder.userBio.setText(usersBioOffline.get(position));
-                Log.e(TAG + "ViewHolder userName ", usersBioOffline.get(position));
+                holder.userBio.setText(usersBioOffline[position]);
+                Log.e(TAG + "ViewHolder userName ", usersBioOffline[position]);
             }
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -181,8 +169,11 @@ public class MyFollowersRecyclerViewAdapter extends RecyclerView.Adapter<MyFollo
 
             return mValues.size();
         } else if(!isNetworkConnected()){
-            Log.i(getClass().getSimpleName() + " Counter ", userCountDB.getUsersCounter() + "");
-            return userCountDB.getUsersCounter();
+            Log.i(getClass().getSimpleName() + " Counter ",
+                    String.valueOf(FollowersMetaDB.find(FollowersMetaDB.class,"USER_COUNT >= ?","0" + "")));
+            List<FollowersMetaDB> count = FollowersMetaDB.find(FollowersMetaDB.class,"USER_COUNT >= ?","0");
+
+            return count.get(0).getUserCount();
         }
         else {
             Log.e(TAG, "mValues is Empty");
